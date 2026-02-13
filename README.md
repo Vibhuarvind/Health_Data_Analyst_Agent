@@ -29,7 +29,7 @@ The solution implements an **Agentic Data Analyst Pipeline** using a Planner-Exe
 The core architecture follows a secure, linear processing pipeline that ensures data privacy while delivering deep health insights.
 
 <p align="center">
-  <img src="docs/images/architecture_diagram.png" width="1000" alt="GenAI Health Data Analysis Architecture">
+  <img src="docs/images/image_diagram.png" width="1000" alt="GenAI Health Data Analysis Architecture">
 </p>
 
 ### Key Components
