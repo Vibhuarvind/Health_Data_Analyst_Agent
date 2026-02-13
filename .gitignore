@@ -1,0 +1,43 @@
+# ==============================================================================
+# DATA FOLDER CLARIFICATION
+# 1. /data/      -> Contains raw CSV datasets (the input data).
+# 2. /src/data/  -> Contains Python source code (loader.py, schema.py) for data handling.
+# ==============================================================================
+
+# Python basics
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+venv/
+env/
+.venv/
+
+# Environment variables & Sensitive data
+.env
+.env.local
+.env.example
+
+# Configuration (as requested)
+config/
+
+# Jupyter Notebooks
+*.ipynb
+.ipynb_checkpoints
+
+# Reports & Outputs
+reports/
+logs/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Project specific
+reports/
+*.tmp

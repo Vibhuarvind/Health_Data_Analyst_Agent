@@ -1,0 +1,20 @@
+# Core dependencies
+streamlit==1.31.1
+groq==0.4.2
+pandas==2.2.0
+python-dotenv==1.0.1
+
+# Testing
+pytest==8.0.0
+
+# Visualization
+plotly==5.18.0
+matplotlib==3.8.2
+
+# Utilities
+pyyaml==6.0.1
+python-docx==1.2.0
+pandasql==0.7.3
+
+# Optional - for advanced features
+langsmith==0.0.87
