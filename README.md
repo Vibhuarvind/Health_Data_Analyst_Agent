@@ -1,15 +1,11 @@
 # GenAI Health Data Analysis Solution
 
-<p align="center">
-  <img src="docs/images/project_poster.svg" width="800" alt="GenAI Health Analyst Poster">
-</p>
-
 A GenAI-powered chatbot for analyzing health data using natural language queries. Built with a text-to-Python/Pandas approach using Groq API and Streamlit.
 
 ## 🎯 Overview
 
 This solution enables users to query health datasets using natural language and receive contextual insights and recommendations. The system:
-- Converts natural language to SQL/Python queries
+- Converts natural language to Python/Pandas queries
 - Executes queries with on-the-fly data joining (no permanent consolidation)
 - Generates natural language responses with health insights
 - Shows intermediate query outputs for transparency
@@ -17,10 +13,6 @@ This solution enables users to query health datasets using natural language and 
 ## 📋 Case Study Alignment
 
 This project is built to address the specific requirements outlined in the **"Development of a Custom GenAI Solution for Conducting Health Data Analysis"** case study.
-
-<p align="center">
-  <img src="docs/images/case_study_requirements_flow.svg" width="1000" alt="Case Study Requirements Flow">
-</p>
 
 ### Alignment Highlights:
 - **On-the-fly Data Integration**: As per the objective to avoid permanent data consolidation, our `QueryExecutor` joins `df1` and `df2` in-memory during query execution.
@@ -57,18 +49,17 @@ The core architecture follows a secure, linear processing pipeline that ensures 
 ## 📂 Project Structure
 
 ```
-health_data_analysis/
+Health_Data_Analyst_Agent/
 ├── config/              # Configuration files
-├── docs/                # Presentation & Design docs
+├── docs/                # Documentation & architecture diagrams
 ├── scripts/             # Evaluation scripts
 ├── src/
 │   ├── core/           # Core pipeline (planner, executor, reasoning, pipeline)
-│   ├── data/           # Data loading, schema, and feature engineering
+│   ├── data/           # Data loading & schema definitions
 │   └── utils/          # Utilities (llm_client, validator, evaluator)
 ├── data/               # Health datasets (CSV files)
-├── reports/             # Evaluation reports (JSON)
 ├── app.py              # Streamlit web interface
-├── Testing.ipynb       # Data Audit & Experimentation (Refined)
+├── Testing.ipynb       # Data Audit & Experimentation
 └── requirements.txt    # Python dependencies
 ```
 
@@ -82,7 +73,8 @@ health_data_analysis/
 
 1. **Clone the repository**
 ```bash
-cd "e:\Projects\Health Data Analysis"
+git clone https://github.com/Vibhuarvind/Health_Data_Analyst_Agent.git
+cd Health_Data_Analyst_Agent
 ```
 
 2. **Create virtual environment**
@@ -105,12 +97,10 @@ pip install -r requirements.txt
 ```
 
 5. **Set up environment variables**
-```bash
-# Copy the example file
-copy .env.example .env
 
-# Edit .env and add your Groq API key
-# GROQ_API_KEY=your_actual_api_key_here
+Create a `.env` file in the root directory and add your Groq API key:
+```bash
+GROQ_API_KEY=your_actual_api_key_here
 ```
 
 6. **Add datasets**
@@ -145,7 +135,7 @@ This runs a comprehensive test suite covering Correctness, Relevance, Clarity, a
 
 ### Code Structure
 - `config/settings.py` - Configuration and prompts
-- `src/core/planner.py` - Text-to-SQL generation
+- `src/core/planner.py` - Text-to-Python generation
 - `src/core/executor.py` - Query execution
 - `src/core/reasoning.py` - Insights generation
 - `src/utils/validator.py` - Query safety validation
