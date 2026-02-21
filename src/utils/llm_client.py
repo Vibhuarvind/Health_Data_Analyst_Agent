@@ -1,6 +1,11 @@
 import os
+import sys
 from groq import Groq
 from config.settings import GROQ_API_KEY, GROQ_MODEL, TEMPERATURE, MAX_TOKENS
+
+# Ensure UTF-8 encoding for print statements
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
 
 class GroqClient:
     """Wrapper for Groq API interactions"""
@@ -33,7 +38,7 @@ class GroqClient:
                     temperature=TEMPERATURE,
                     max_tokens=MAX_TOKENS,
                 )
-                return chat_completion.choices[0].message.content
+                return chat_completion.choices[0].message.content #return the query generated
             except Exception as e:
                 last_error = e
                 err_msg = str(e).lower()
@@ -52,11 +57,11 @@ class GroqClient:
                 found_trigger = next((t for t in failover_triggers if t in err_msg), "error")
                 
                 if any(trigger in err_msg for trigger in failover_triggers):
-                    print(f"⚠️ Failover trigger detected on {model}: {found_trigger}. Trying next fallback...")
+                    print(f"[WARNING] Failover trigger detected on {model}: {found_trigger}. Trying next fallback...")
                     continue
                 
                 # For other errors, log and return
-                print(f"❌ Groq API Error on {model}: {e}")
+                print(f"[ERROR] Groq API Error on {model}: {e}")
                 break
                 
         return f"ERROR_LLM_GEN_FAILED: {last_error}"

@@ -2,6 +2,11 @@ import pandas as pd
 from pathlib import Path
 from config.settings import DATASET_1_PATH, DATASET_2_PATH
 import functools
+import sys
+
+# Ensure UTF-8 encoding for print statements
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8')
 
 class DataLoader:
     """Handles loading and validation of health datasets."""
@@ -28,11 +33,11 @@ class DataLoader:
             # Feature Engineering (Mandatory 2a)
             df1 = DataLoader._feature_engineering(df1)
             
-            print(f"✅ datasets loaded successfully: DF1({len(df1)}), DF2({len(df2)})")
+            print(f"[OK] Datasets loaded successfully: DF1({len(df1)}), DF2({len(df2)})")
             return df1, df2
             
         except Exception as e:
-            print(f"❌ Error loading datasets: {e}")
+            print(f"[ERROR] Error loading datasets: {e}")
             raise e
 
     @staticmethod

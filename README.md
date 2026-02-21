@@ -1,6 +1,12 @@
 # GenAI Health Data Analysis Solution
 
+[![Live Demo](https://img.shields.io/badge/🤗%20Hugging%20Face-Live%20Demo-blue)](https://huggingface.co/spaces/VA6573/Nexus-Health-Analyst)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 A GenAI-powered chatbot for analyzing health data using natural language queries. Built with a text-to-Python/Pandas approach using Groq API and Streamlit.
+
+**🔗 Live Demo:** https://huggingface.co/spaces/VA6573/Nexus-Health-Analyst
 
 ## 🎯 Overview
 
