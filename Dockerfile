@@ -37,8 +37,10 @@ RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
     pandasql \
     rouge-score
 
-# Copy application code
-COPY . .
+COPY src ./src
+COPY config ./config
+COPY data ./data
+COPY app.py .
 
 # Create data directory
 RUN mkdir -p data reports

@@ -9,7 +9,10 @@ RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY . .
+COPY src ./src
+COPY config ./config
+COPY data ./data
+COPY app.py .
 
 # Expose Streamlit default port
 EXPOSE 8501
