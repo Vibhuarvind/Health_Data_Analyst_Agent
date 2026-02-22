@@ -1,3 +1,4 @@
+from typing import Dict, Any
 import time
 import traceback
 from src.core.planner import QueryPlanner
@@ -8,16 +9,36 @@ class HealthDataPipeline:
     """
     Orchestrates the end-to-end flow:
     NL Query -> Plan -> Execute -> Reason -> Response
+    
+    Attributes:
+        planner: QueryPlanner for code generation
+        executor: QueryExecutor for code execution
+        reasoning: ReasoningEngine for insight generation
     """
     
-    def __init__(self):
-        self.planner = QueryPlanner()
-        self.executor = QueryExecutor()
-        self.reasoning = ReasoningEngine()
+    def __init__(self) -> None:
+        self.planner: QueryPlanner = QueryPlanner()
+        self.executor: QueryExecutor = QueryExecutor()
+        self.reasoning: ReasoningEngine = ReasoningEngine()
         
-    def run(self, user_query: str, verbose: bool = False) -> dict:
+    def run(self, user_query: str, verbose: bool = False) -> Dict[str, Any]:
         """
         Runs the full pipeline for a single query.
+        
+        Args:
+            user_query: Natural language health data question
+            verbose: Whether to print debug information
+            
+        Returns:
+            Dictionary containing:
+                - question: Original query
+                - status: 'success' or 'failed'
+                - timings_ms: Dict of timing metrics for each stage
+                - py_code: Generated Python code
+                - py_success: Whether code execution succeeded
+                - result: Query result
+                - final_response: Natural language answer
+                - error: Error message if failed
         """
         result = {
             "question": user_query,

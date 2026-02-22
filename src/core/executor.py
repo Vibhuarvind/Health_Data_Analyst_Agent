@@ -1,3 +1,4 @@
+from typing import Dict, Any, Optional, Union
 import pandas as pd
 import numpy as np
 from src.data.loader import DataLoader
@@ -7,19 +8,30 @@ class QueryExecutor:
     """
     Executes the generated pandas code on loaded datasets.
     Handles on-the-fly joining and sandboxed execution.
+    
+    Attributes:
+        df1: Primary health metrics dataset
+        df2: Physical activity dataset
     """
     
-    def __init__(self):
+    def __init__(self) -> None:
+        self.df1: pd.DataFrame
+        self.df2: pd.DataFrame
         self.df1, self.df2 = DataLoader.load_datasets()
         
-    def execute(self, query_code: str) -> dict:
+    def execute(self, query_code: str) -> Dict[str, Any]:
         """
-        Executes the provided python code.
-        Returns: {
-            "success": bool,
-            "result": Any,
-            "error": str
-        }
+        Executes the provided python code in a sandboxed environment.
+        
+        Args:
+            query_code: Python/Pandas code string to execute
+            
+        Returns:
+            Dictionary containing:
+                - success: Whether execution succeeded
+                - result: Query result (DataFrame, Series, or scalar)
+                - error: Error message if failed, None otherwise
+                - traceback: Full traceback if execution failed
         """
         if not query_code:
             return {"success": False, "result": None, "error": "No query code provided"}
@@ -57,8 +69,16 @@ class QueryExecutor:
                 "traceback": traceback.format_exc()
             }
     
-    def _process_result(self, result):
-        """Helper to format result for downstream consumption"""
+    def _process_result(self, result: Any) -> Union[pd.DataFrame, pd.Series, Any]:
+        """
+        Helper to format result for downstream consumption.
+        
+        Args:
+            result: Raw execution result
+            
+        Returns:
+            Processed result suitable for display and reasoning
+        """
         if isinstance(result, (pd.DataFrame, pd.Series)):
             return result  # Keep as pandas object for display/reasoning
         return result

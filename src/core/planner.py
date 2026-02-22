@@ -1,3 +1,4 @@
+from typing import Dict, Any, Optional
 from src.utils.llm_client import GroqClient
 from src.data.schema import get_schema_info
 from src.utils.validator import QueryValidator
@@ -6,16 +7,30 @@ import json
 class QueryPlanner:
     """
     Generates execution plans (SQL/Python code) from natural language queries.
+    
+    Attributes:
+        llm: GroqClient instance for LLM interactions
+        schema: Dataset schema metadata
+        validator: QueryValidator for code safety checks
     """
     
-    def __init__(self):
-        self.llm = GroqClient()
-        self.schema = get_schema_info()
-        self.validator = QueryValidator()
+    def __init__(self) -> None:
+        self.llm: GroqClient = GroqClient()
+        self.schema: Dict[str, Any] = get_schema_info()
+        self.validator: QueryValidator = QueryValidator()
         
-    def generate_plan(self, user_query: str) -> dict:
+    def generate_plan(self, user_query: str) -> Dict[str, Optional[str]]:
         """
         Generates a python code snippet to answer the user query.
+        
+        Args:
+            user_query: Natural language question about health data
+            
+        Returns:
+            Dictionary containing:
+                - query_code: Generated Python/Pandas code
+                - explanation: Human-readable plan description
+                - error: Error message if generation failed, None otherwise
         """
         system_prompt = f"""
         You are an expert Python Data Analyst. 
