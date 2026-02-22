@@ -1,11 +1,23 @@
 # Core dependencies
 streamlit==1.31.1
-groq==0.4.2
+groq>=0.18.0
 pandas==2.2.0
 python-dotenv==1.0.1
 
+# FastAPI and API dependencies
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+pydantic==2.5.3
+
 # Testing
 pytest==8.0.0
+pytest-cov==4.1.0
+
+# Type checking and linting
+mypy==1.8.0
+flake8==7.0.0
+black==24.1.1
+isort==5.13.2
 
 # Visualization
 plotly==5.18.0
@@ -15,6 +27,11 @@ matplotlib==3.8.2
 pyyaml==6.0.1
 python-docx==1.2.0
 pandasql==0.7.3
+rouge-score==0.1.2
+
+# Type stubs
+types-requests==2.31.0.20240106
 
 # Optional - for advanced features
 langsmith==0.0.87
+

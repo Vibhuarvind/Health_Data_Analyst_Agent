@@ -176,4 +176,4 @@ Educational project - Not for commercial use
 
 ## 👥 Contact
 
-For questions or feedback about this assignment implementation, please contact the developer.
+For questions or feedback about this implementation, please contact the developer.
